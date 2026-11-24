@@ -1,0 +1,159 @@
+{
+  "spawn": {
+    "road": "Hallströmsgatan",
+    "end": "north",
+    "offset_m": 22,
+    "heading_offset_deg": 90
+  },
+  "buildings": {
+    "w429898168": {
+      "building:levels": 3,
+      "style": "plaster",
+      "colour": "ivory",
+      "roof:shape": "hipped",
+      "roof_style": "slate",
+      "roof_colour": "dark",
+      "note": "Historic Kronohäktet from 1871: three-storey pale plaster cell block with a hipped roof, regular barred-cell window rhythm, central roof lantern and tall chimneys."
+    },
+    "w391945935": {
+      "building:levels": 3,
+      "height": 46,
+      "style": "brick",
+      "colour": "red",
+      "roof:shape": "gabled",
+      "roof_style": "slate",
+      "roof_colour": "dark",
+      "note": "Sankt Petri kyrka: red brick and sandstone Neo-Gothic Latin-cross church, tall central spire, smaller corner pinnacles and pointed-arch windows."
+    },
+    "w1093394319": {
+      "building:levels": 3,
+      "height": 13,
+      "style": "plaster",
+      "colour": "yellow",
+      "roof:shape": "hipped",
+      "roof_style": "slate",
+      "roof_colour": "dark",
+      "note": "Västervik station, built in 1879: pale yellow three-storey station house with a dark pitched roof, dormers, central gable and regular sash windows."
+    },
+    "w312971950": {
+      "building:levels": 3,
+      "height": 13,
+      "style": "plaster",
+      "colour": "yellow",
+      "roof:shape": "hipped",
+      "roof_style": "metal",
+      "roof_colour": "green",
+      "note": "Ellen Key school's 1870 main building: three-storey pale yellow plaster with a rusticated granite base, neo-Romanesque arched windows and an arched roofline frieze; low green metal hipped roof."
+    },
+    "w391945967": {
+      "building:levels": 3,
+      "height": 10,
+      "style": "plaster",
+      "colour": "white",
+      "roof:shape": "flat",
+      "roof_style": "flat",
+      "roof_colour": "gravel",
+      "note": "Ellen Key school's 1950s wing: three-storey, pale rendered functionalist block with evenly spaced modern windows and a flat roof."
+    },
+    "w1361680623": {
+      "building:levels": 2,
+      "height": 9,
+      "style": "wood",
+      "colour": "yellow",
+      "roof:shape": "gabled",
+      "roof_style": "tiles",
+      "roof_colour": "red",
+      "note": "Street View, Aug 2024: pale yellow vertical timber cladding, white window and gable trim, steep red tile roof, grey plinth and a small entrance porch."
+    },
+    "w1360320789": {
+      "building:levels": 2,
+      "height": 7.8,
+      "style": "wood",
+      "colour": "white",
+      "roof:shape": "gabled",
+      "roof_style": "metal",
+      "roof_colour": "black",
+      "note": "Street View, Aug 2024: two-storey light beige vertical timber siding, white-framed sash windows and a dark pitched roof."
+    },
+    "w1357720957": {
+      "building:levels": 1,
+      "height": 5.2,
+      "style": "plaster",
+      "colour": "white",
+      "roof:shape": "gabled",
+      "roof_style": "metal",
+      "roof_colour": "grey",
+      "shopfront": true,
+      "note": "V-DATA, Allén 4: the small, light-coloured gabled shop unit beside the taller apartment block, with broad display glazing and red V-DATA lettering on its street-facing gable. Street View, Aug 2024; the adjacent apartment block is a separate building."
+    },
+    "w1357781804": {
+      "building:levels": 1,
+      "height": 4.2,
+      "style": "plaster",
+      "colour": "white",
+      "roof:shape": "gabled",
+      "roof_style": "metal",
+      "roof_colour": "black",
+      "shopfront": true,
+      "note": "Corner, Allén 1: low pale restaurant with broad shopfront glazing, a shallow dark metal roof, green awning and a prominent red Corner sign with a smaller Burgers & Grill line. Street View, Aug 2024."
+    },
+    "w1036831300": {
+      "building:levels": 3,
+      "roof:shape": "gabled",
+      "style": "wood",
+      "colour": "yellow",
+      "roof_style": "tiles",
+      "roof_colour": "dark",
+      "note": "Street View, Aug 2024: yellow timber facade, white ornamental trim and arched upper window, dark steep roof; ground floor partly hidden by trees and a black garage door."
+    },
+    "w391945954": {
+      "building:levels": 3,
+      "style": "plaster",
+      "colour": "ivory",
+      "roof_style": "tiles",
+      "roof_colour": "red",
+      "note": "Street View, Aug 2024: pale cream facade, red-painted window frames, arched ground-floor windows and a white corner bay; red tiled roof."
+    },
+    "w1354299041": {
+      "building:levels": 1,
+      "height": 6.5,
+      "style": "plaster",
+      "colour": "white",
+      "roof:shape": "hipped",
+      "roof_style": "tiles",
+      "roof_colour": "brown",
+      "note": "Sillgatan 9, Google Street View Aug 2024: low one-storey house with white infill and dark timber framing, broad dark tiled roof with a front dormer, brown entrance door and raised steps."
+    },
+    "w1356508678": {
+      "building:levels": 1,
+      "height": 5.8,
+      "style": "wood",
+      "colour": "white",
+      "roof:shape": "gabled",
+      "roof_style": "tiles",
+      "roof_colour": "red",
+      "note": "Rådjursstigen 15, Google Street View Aug 2024: one-storey light vertical timber siding, red tiled gable roof, grey stone base and raised entrance steps."
+    },
+    "w1037123082": {
+      "building:levels": 2,
+      "height": 18,
+      "style": "plaster",
+      "colour": "ivory",
+      "roof:shape": "hipped",
+      "roof_style": "metal",
+      "roof_colour": "dark",
+      "note": "Västervik rådhus, Stora torget, built 1793–95: two-storey plastered brick, symmetrical windows and a central raised attic with clock and lantern above a broken mansard roof. Based on Kalmar läns museums public-domain photo and Street View, Aug 2024."
+    }
+  },
+  "collision_footprints": [
+    {
+      "id": "ahmans",
+      "ring": [
+        [643.615, -404.729],
+        [657.757, -418.871],
+        [666.243, -410.385],
+        [652.101, -396.243]
+      ]
+    }
+  ]
+}

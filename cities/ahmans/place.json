@@ -1,0 +1,23 @@
+{
+  "name": "Åhmans",
+  "query": "Åhmans, Västervik, Kalmar län, Sweden",
+  "display_name": "Åhmans, Norra Bangatan, Lidhem, Ludvigsborg, Västervik, Västerviks kommun, Kalmar län, 593 30, Sverige",
+  "country_code": "se",
+  "region": "Kalmar län",
+  "center": [
+    57.75897,
+    16.63065
+  ],
+  "size_m": 3200,
+  "bbox": [
+    57.744597,
+    16.603708,
+    57.773343,
+    16.657592
+  ],
+  "osm": {
+    "type": "node",
+    "id": 2105818770
+  },
+  "attribution": "Map data © OpenStreetMap contributors (ODbL)"
+}

@@ -1,0 +1,79 @@
+{
+  "_help": "Edit freely, then run: python3 wasteland.py theme <slug>  (texts) · voices <slug>  (ElevenLabs) · build <slug> --only pack",
+  "name": "Västervik",
+  "language": "sv",
+  "title_top": "VÄSTERVIK",
+  "title_bottom": "ÖDEMARK",
+  "page_title": "Västervik Ödemark · Battlecars",
+  "room": "VASTERVIK",
+  "_map_labels_help": "Extra tactical-map labels, shown first: a landmark/place name from facts, or {\"name\": …, \"lat\": …, \"lon\": …}.",
+  "map_labels": [
+    {
+      "name": "Åhmans",
+      "lat": 57.7553448,
+      "lon": 16.6415434
+    },
+    {
+      "name": "Rådhuset",
+      "lat": 57.758388,
+      "lon": 16.636781
+    }
+  ],
+  "_bonus_vehicles_help": "Extra cars in the garage: [{\"id\": \"epa\", \"model\": \"volvo740\", \"name\": …, \"number\": …, \"description\": …, \"paint\": \"#7d1416\", \"rear_window\": \"text on the rear window (| = new line)\", \"plate\": \"ABC 123\", \"dice\": \"#hex\", \"led\": \"#hex\"}]. Its own radio: python3 wasteland.py music <slug> --vehicle <id> --add song.mp3.",
+  "bonus_vehicles": [],
+  "text": {
+    "eyebrow": "GATORNA ÄR ERA. HÅLL ER RULLANDE.",
+    "tagline": "Samma gator. Nya regler.",
+    "intro": "Åhmans vid resecentrum lyser rött när Västervik slocknar.<br>Ta bilen ut på gatorna, jaga plundrarna och ta dig hem.",
+    "win_eyebrow": "VÄSTERVIK ÄR ERT",
+    "start_roam": "KÖR I VÄSTERVIK",
+    "explore": "UTFORSKA VÄSTERVIK",
+    "loading": "Laddar Västervik…",
+    "ready": "Västervik är redo",
+    "map_title": "VÄSTERVIK / STRIDSKARTA",
+    "description": "Pansarbilar. Västerviks riktiga gator. Ett öppet actionspel i webbläsaren."
+  },
+  "voice": {
+    "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+    "model": "eleven_v3",
+    "_lines_help": "Audio tags like [gravelly] [pause] [urgent] steer delivery. intro and win should name the place; wave, critical, repair and wrecked are optional (the game has generic ones).",
+    "lines": {
+      "intro": "[gravelly] Åhmans vid resecentrum lyser fortfarande rött. [pause] Västervik tillhör den som tar sig hem. Håll motorn igång, håll koll på pansaret och samla skrot.",
+      "win": "[excited] Du klarade det. Sista plundraren brinner, och Västervik är ert för natten. Ta bilen tillbaka till Åhmans.",
+      "wave": "[urgent] Plundrare vid Spötorget. De kommer ner mot resecentrum. Håll vapnet varmt och flyktvägen öppen."
+    }
+  },
+  "splash_prompt": "Cinematic post-apocalyptic game key art. An armored muscle car with a steel ram plow, riveted graphite armor, exposed V8 supercharger and roof-mounted twin machine guns on Hallströmsgatan in Västervik, Sweden, at golden dusk. Include Åhmans by the station with its low charcoal facade and red fascia, leafy roadside trees, and a glimpse of the harbor beyond the town's real Swedish architecture. Dust, rust and oil, warm orange sunlight, charcoal shadows, desaturated amber. Front three-quarter street-level view; car on the right third, dark calm negative space on the left for the HTML title. Wide 16:9 landscape. No people, no text, no logos, no watermark. Realistic game key art.",
+  "music": [
+    {
+      "title": "Västervik — Skrotjakt",
+      "style": "Instrumental desert-industrial chase music, 132 BPM. Distorted bass, detuned guitar riffs, hammered oil-drum percussion, metallic hits, gritty analog pulses and dark brass. Dusty, tense, relentless. Kick and bass from beat one; no intro, no vocals. Driving combat groove, sparse breaks, loopable end."
+    }
+  ],
+  "facts": {
+    "country": "Sverige",
+    "region": "Kalmar län",
+    "landmarks": [
+      "Åhmans",
+      "Västerport",
+      "Spötorget",
+      "Sankt Petri kyrka",
+      "Bergens lycka"
+    ],
+    "streets": [
+      "Esplanaden",
+      "Kvarngatan",
+      "Slottsholmsvägen",
+      "Sturegatan",
+      "Norra Bangatan",
+      "Hallströmsgatan",
+      "Siversgatan",
+      "Storgatan"
+    ],
+    "center": [
+      57.7553448,
+      16.6415434
+    ],
+    "size_m": 1000
+  }
+}
