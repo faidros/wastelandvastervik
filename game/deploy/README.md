@@ -70,10 +70,9 @@ Online Arena mode is unavailable.
 ### Vercel
 
 The repository-root `vercel.json` tells Vercel to install and build the Vite app in `game/`, rather
-than treating the repository's Python pipeline as a serverless app. The generated city pack is
-git-ignored, however, so a Git-based Vercel build will not contain `game/public/city`; deploy a
-published `game/dist/` that includes the city pack, or make the pack available to the build by
-another means.
+than treating the repository's Python pipeline as a serverless app. The build downloads the
+published Västervik pack, verifies its SHA-256 digest, and adds it to `game/dist/city`. To publish a
+new city pack, update the release URL and expected digest in `deploy/fetch-city.mjs`.
 
 To try the arena locally without a server: `npm run dev` already serves a relay at `/arena/ws`;
 open the game in two browser windows, choose ONLINE ARENA and the same room code.
