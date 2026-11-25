@@ -63,3 +63,19 @@
 - The map prepared and exported successfully with 3,397 building footprints, 2,227 streamed tiles and no failed custom models. OSM's primary API supplied the map; Overpass mirrors were unavailable during this refresh. Copernicus GLO-30 supplies the terrain.
 - The final custom scripts use explicit observed materials so these models render correctly in the exported city. Per-building override facts are saved in `overrides.json` and will also be applied to generated building metadata on the next `prepare` run.
 - Visual interpretations, not survey-grade reconstructions.
+
+## 2026-11-24 — Ljungheden expansion
+
+- Expanded the playable map to a 4,800 m square centered at 57.76175, 16.62, preserving the previous play area while extending north and west to include Ljungheden and Västervik Speedway.
+- Added Ljungheden as a label on the tactical map. Åhmans and the Hallströmsgatan spawn were shifted with the map origin so the existing start area remains in place.
+- Rebuilt the city with Copernicus GLO-30 terrain: 4,788 OSM building footprints, 2,408 roads and paths, 4,860 streamed tiles, and 13 custom models with no failures. Other buildings remain OSM-based generated estimates.
+- The game test suite passes (72/72); visual interpretations and generated building heights are not survey-grade.
+
+## 2026-11-25 — Slottsholmen and Stegeholms slottsruin
+
+- Added the SLOTTSHOLMEN tactical-map label and a collision footprint for the castle ruin, which OSM maps as a historic ruin rather than a building.
+- Hand-modelled Stegeholms slottsruin with irregular surviving walls, a gated arch, courtyard remains, a well and the present-day lookout platform and stairs.
+- Reworked four hotel volumes with brick and timber facades, windows, balconies and roof details; included a floating-hotel interpretation. The hotel identification and forms are interpreted from the mapped footprints and architectural references, not survey-grade measurements.
+- Used Sandellsandberg's project material and official hotel information as visual references. Stored two Wikimedia Commons ruin photographs by AleWi under CC BY-SA 4.0 with attribution; sources and model notes are in `references/`.
+- Re-exported and packed the full city: 6,998 building footprints, 2,408 roads and paths, 4,860 streamed tiles and 125 materials. The Hallströmsgatan spawn and OpenStreetMap attribution remain in place.
+- Reviewed focused ruin and waterfront renders. The game test suite passes (72/72); Copernicus GLO-30 terrain and generated surrounding buildings remain as before.

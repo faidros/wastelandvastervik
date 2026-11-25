@@ -13,6 +13,10 @@ pass. Three levels, cheapest first:
 2. **Area rules** — one setting for every building inside a polygon or radius.
 3. **Custom models** — a Blender script per landmark in `cities/<slug>/custom/<building id>.py`.
 
+When a hand-modelled landmark has no OSM building footprint, also add its local-metre outline
+(`x` east, `y` north) to `overrides.json` as a `collision_footprints` entry. The pack uses this
+polygon for vehicle collision and spawn clearance; the custom Blender mesh is not a collider.
+
 ## Two kinds of work
 
 - **Known buildings and places** (church, station, town hall, a landmark the user names): find photos

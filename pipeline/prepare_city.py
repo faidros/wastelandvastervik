@@ -719,6 +719,7 @@ def main(argv=None):
 
     kinds = {'street_lamp': 'lamp', 'traffic_signals': 'signal', 'bus_stop': 'busstop', 'bench': 'bench', 'waste_basket': 'bin',
              'fountain': 'fountain', 'post_box': 'postbox', 'telephone': 'phone', 'bicycle_parking': 'bikerack'}
+    carriageway_inner = car_u.buffer(-0.5)
     for el in osm.nodes:
         t = el.get('tags', {})
         k = kinds.get(t.get('highway')) or kinds.get(t.get('amenity'))
@@ -728,12 +729,15 @@ def main(argv=None):
         pt = Point(x, y)
         if not B.contains(pt) or FOOT.contains(pt) or not walkable_land.contains(pt):
             continue
-        if k in ('lamp', 'signal', 'busstop', 'postbox', 'phone', 'bin', 'bench') and car_u.buffer(-0.5).contains(pt):
+        if k in ('lamp', 'signal', 'busstop', 'postbox', 'phone', 'bin', 'bench') and carriageway_inner.contains(pt):
             # Nodes on the carriageway centreline (signals, mapped bus stops): move them to the kerb.
             pt = nearest_edge_point(sidewalk_g, pt) or pt
         props.append({'k': k, 'x': r2(pt.x), 'y': r2(pt.y), 'a': facing(pt.x, pt.y)})
-    mapped_lamps = unary_union([Point(p['x'], p['y']).buffer(18) for p in props if p['k'] == 'lamp']) if props else Polygon()
+    mapped_lamp_buffers = [Point(p['x'], p['y']).buffer(18) for p in props if p['k'] == 'lamp']
+    mapped_lamp_tree = STRtree(mapped_lamp_buffers) if mapped_lamp_buffers else None
     # Generated lamps along sidewalks of streets that have none mapped.
+    lamp_sidewalk = sidewalk_g.buffer(0.05)
+    lamp_clearance = FOOT.buffer(0.6)
     for r in roads_out:
         if r['kind'] not in SIDEWALK_CLASSES or len(r['p']) < 2:
             continue
@@ -747,7 +751,10 @@ def main(argv=None):
             off = r['w'] / 2 + 0.55
             px, py = c.x - dy / L * off * side, c.y + dx / L * off * side
             pt = Point(px, py)
-            if B.contains(pt) and sidewalk_g.buffer(0.05).contains(pt) and not mapped_lamps.contains(pt) and not FOOT.buffer(0.6).contains(pt):
+            near_mapped_lamp = mapped_lamp_tree is not None and any(
+                mapped_lamp_buffers[i].contains(pt) for i in mapped_lamp_tree.query(pt)
+            )
+            if B.contains(pt) and lamp_sidewalk.contains(pt) and not near_mapped_lamp and not lamp_clearance.contains(pt):
                 props.append({'k': 'lamp', 'x': r2(px), 'y': r2(py), 'a': r2(math.atan2(dy, dx) - math.pi / 2 * side), 'gen': 1})
     # Gravestones in cemeteries.
     cem = layer_geom.get('cemetery')

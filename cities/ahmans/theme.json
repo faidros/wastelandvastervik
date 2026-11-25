@@ -17,6 +17,16 @@
       "name": "Rådhuset",
       "lat": 57.758388,
       "lon": 16.636781
+    },
+    {
+      "name": "Ljungheden",
+      "lat": 57.7688719,
+      "lon": 16.5958828
+    },
+    {
+      "name": "Slottsholmen",
+      "lat": 57.762624,
+      "lon": 16.642837
     }
   ],
   "_bonus_vehicles_help": "Extra cars in the garage: [{\"id\": \"epa\", \"model\": \"volvo740\", \"name\": …, \"number\": …, \"description\": …, \"paint\": \"#7d1416\", \"rear_window\": \"text on the rear window (| = new line)\", \"plate\": \"ABC 123\", \"dice\": \"#hex\", \"led\": \"#hex\"}]. Its own radio: python3 wasteland.py music <slug> --vehicle <id> --add song.mp3.",
@@ -58,7 +68,10 @@
       "Västerport",
       "Spötorget",
       "Sankt Petri kyrka",
-      "Bergens lycka"
+      "Bergens lycka",
+      "Ljungheden",
+      "Slottsholmen",
+      "Stegeholms slottsruin"
     ],
     "streets": [
       "Esplanaden",
@@ -71,9 +84,9 @@
       "Storgatan"
     ],
     "center": [
-      57.7553448,
-      16.6415434
+      57.76175,
+      16.62
     ],
-    "size_m": 1000
+    "size_m": 4800
   }
 }

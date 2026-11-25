@@ -1,7 +1,7 @@
 """Hand-modelled Åhmans gatukök, placed from its OpenStreetMap point."""
 import housekit
 
-cx, cy = 654.929, -407.557
+cx, cy = 1287.304, -717.027
 a, length, width = -math.pi / 4, 20.0, 12.0
 eaves, roof_rise = 3.1, 1.15
 wall = 'M_Wall_Wood_black_Blank'

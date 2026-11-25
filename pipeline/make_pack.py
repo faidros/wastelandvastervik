@@ -166,6 +166,17 @@ def main(argv=None):
     pack = folder / 'pack'
     pack.mkdir(exist_ok=True)
     half = city['half']
+    overrides_path = folder / 'overrides.json'
+    overrides = json.loads(overrides_path.read_text()) if overrides_path.exists() else {}
+    custom_footprints = []
+    for item in overrides.get('collision_footprints', []):
+        footprint = item.get('ring')
+        if not isinstance(footprint, list) or len(footprint) < 3:
+            raise ValueError(f'Collision footprint {item.get("id", "<unnamed>")!r} needs at least three [x, y] points')
+        polygon = Polygon(footprint)
+        if not polygon.is_valid or polygon.area <= 0:
+            raise ValueError(f'Collision footprint {item.get("id", "<unnamed>")!r} must be a valid, non-empty polygon')
+        custom_footprints.append((item.get('id', 'custom'), polygon))
 
     # ---------------------------------------------------------------- map.json
     def ring(r):
@@ -187,12 +198,14 @@ def main(argv=None):
     terrain = city.get('terrain')
     if terrain and terrain.get('attribution'):
         attribution += ' · ' + terrain['attribution']
-    game_map = {'roads': roads, 'buildings': [ring(f) for f in city['footprints'] if len(f) >= 3], 'land': [], 'areas': areas,
+    building_footprints = [ring(f) for f in city['footprints'] if len(f) >= 3]
+    building_footprints.extend([[tz(p) for p in list(poly.exterior.coords)[:-1]] for _, poly in custom_footprints])
+    game_map = {'roads': roads, 'buildings': building_footprints, 'land': [], 'areas': areas,
                 'attribution': attribution, 'bounds': [-half, -half, half, half], 'terrain': game_terrain(terrain, half)}
     write_json(pack / 'map.json', game_map, compact=True)
 
     # ---------------------------------------------------------------- spawn: a wide named street near the centre
-    foot = [Polygon(f) for f in city['footprints'] if len(f) >= 3]
+    foot = [Polygon(f) for f in city['footprints'] if len(f) >= 3] + [poly for _, poly in custom_footprints]
     ftree = STRtree(foot) if foot else None
     land = [Polygon(l['outer'], l['holes']) for l in city['land']]
 
@@ -217,7 +230,40 @@ def main(argv=None):
             if (best is None or score < best[0]) and clear(pt, r['w'] / 2 + 0.5):
                 a, b = ln.interpolate(max(0, dd - 2)), ln.interpolate(min(ln.length, dd + 2))
                 best = (score, pt, b.x - a.x, b.y - a.y, r)
-    if best:
+    spawn_override = overrides.get('spawn')
+    if spawn_override:
+        road_name = spawn_override.get('road')
+        offset = float(spawn_override.get('offset_m', 0))
+        end = spawn_override.get('end', 'south')
+        if not road_name or offset <= 0 or end not in ('north', 'south'):
+            raise ValueError('Spawn override needs a road name, positive offset_m, and end "north" or "south"')
+        candidates = [r for r in roads if r['name'] == road_name and r['kind'] in DRIVABLE
+                     and r['w'] >= 5 and len(r['p']) >= 2]
+        if not candidates:
+            raise ValueError(f'Spawn override road {road_name!r} is not a drivable mapped street')
+        segments = [(r, LineString((x, -z) for x, z in r['p'])) for r in candidates]
+        edge_y = (min if end == 'south' else max)(
+            p[1] for _, ln in segments for p in (ln.coords[0], ln.coords[-1]))
+        endpoint_matches = []
+        for r, ln in segments:
+            if abs(ln.coords[0][1] - edge_y) < 0.01:
+                endpoint_matches.append((r, ln, True))
+            if abs(ln.coords[-1][1] - edge_y) < 0.01:
+                endpoint_matches.append((r, ln, False))
+        endpoint_matches = [(r, ln, at_start) for r, ln, at_start in endpoint_matches if offset < ln.length - 3]
+        if not endpoint_matches:
+            raise ValueError(f'Spawn offset {offset:g} m does not fit on the {end} end of {road_name}')
+        road, ln, at_start = max(endpoint_matches, key=lambda match: match[1].length)
+        distance = offset if at_start else ln.length - offset
+        pt = ln.interpolate(distance)
+        inside = ln.interpolate(distance + 2 if at_start else distance - 2)
+        if not clear(pt, road['w'] / 2 + 0.5):
+            raise ValueError(f'Spawn point at the {end} end of {road_name} is blocked by a building or outside the land area')
+        spawn = {'x': round(pt.x, 2), 'z': round(-pt.y, 2),
+                 'heading': round(math.atan2(-(inside.x - pt.x), inside.y - pt.y), 4), 'street': road_name}
+        heading_offset = float(spawn_override.get('heading_offset_deg', 0))
+        spawn['heading'] = round(spawn['heading'] + math.radians(heading_offset), 4)
+    elif best:
         _, pt, dx, dy, road = best
         spawn = {'x': round(pt.x, 2), 'z': round(-pt.y, 2), 'heading': round(math.atan2(-dx, dy), 4), 'street': road['name']}
     else:
