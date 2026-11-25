@@ -67,6 +67,14 @@ Upload the **contents** of `game/dist/` (including `.htaccess` and the `city/` f
 host, in any sub-folder — all URLs are relative. Without `ARENA_URL` the site works fine, only the
 Online Arena mode is unavailable.
 
+### Vercel
+
+The repository-root `vercel.json` tells Vercel to install and build the Vite app in `game/`, rather
+than treating the repository's Python pipeline as a serverless app. The generated city pack is
+git-ignored, however, so a Git-based Vercel build will not contain `game/public/city`; deploy a
+published `game/dist/` that includes the city pack, or make the pack available to the build by
+another means.
+
 To try the arena locally without a server: `npm run dev` already serves a relay at `/arena/ws`;
 open the game in two browser windows, choose ONLINE ARENA and the same room code.
 
